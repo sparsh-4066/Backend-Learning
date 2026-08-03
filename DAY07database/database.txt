@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Sparsh",
+    "accountNumber": 2324,
+    "city": "Ghaziabad",
+    "age": 20,
+    "balance": 500
+  },
+  {
+    "name": "Rimjhim",
+    "accountNumber": 2326,
+    "city": "Ghaziabad",
+    "age": 20,
+    "balance": 10000
+  },
+  {
+    "name": "Rahul",
+    "accountNumber": 23285,
+    "city": "Delhi",
+    "age": 17,
+    "balance": 10
+  },
+  {
+    "name": "RAJU",
+    "accountNumber": 2323221,
+    "city": "Dwarka",
+    "age": 69,
+    "balance": 669
+  }
+]
