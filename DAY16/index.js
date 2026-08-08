@@ -1,17 +1,27 @@
 import express from "exprees"
 import connectDB from "./config/database.js";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
+import userRouter from "./routes/userRouter.js";
+import messageRouter from "./routes/messageRouter.js";
+import chatRouter from "./routes/chatRouter.js"
 
 
 
-
-dotenv.config();  // it will put the evn contents inside process.env(initially an empty object) 
+dotenv.config();  // it will put the env contents inside process.env(initially an empty object) 
 
 
 
 
 const app = express();
 app.use(express.json());
+
+
+
+
+app.use("/user",userRouter);
+app.use("/msg",messageRouter);
+app.use("/chat",chatRouter);
+
 
 
 
