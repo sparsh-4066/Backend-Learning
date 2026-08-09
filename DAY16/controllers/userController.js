@@ -186,7 +186,7 @@ export const logout = async (req,res)=>{
 
 
 //only show those profiles, which has a authenticated token, and can access his own profile
-export const profile = async (req,res)=>{
+/* export const profile = async (req,res)=>{
 
     try{
 
@@ -226,4 +226,30 @@ export const profile = async (req,res)=>{
 
 
     
+} */
+
+
+export const profile = async (req,res)=>{
+    try{
+
+        //user is authenticated, now send the profile info
+        //Database ke andar call kro, aur us user kop search kro , jo ki hm pehle kar chuke hai
+        //userUserMiddleware ke andar
+
+        res.status(200).json({
+            name:req.user.name,
+            age:req.user.age,
+            usage:req.user.usage,
+            email:req.user.email
+
+        })
+
+    }
+    catch(err){
+        console.log(err);
+        res.json(500).json({
+            message:"Internal server error"
+        })
+
+    }
 }
