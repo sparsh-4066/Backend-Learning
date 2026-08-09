@@ -5,10 +5,10 @@ const userRouter = express.Router();
 
 
 
-
+userRouter.post("/signup",signup)
 userRouter.post("/login",login)
 userRouter.post("/logout",logout)
-userRouter.post("/signup",signup)
+
 userRouter.get("/profile",profile)
 
 export default userRouter;

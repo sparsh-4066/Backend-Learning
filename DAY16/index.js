@@ -3,7 +3,8 @@ import connectDB from "./config/database.js";
 import dotenv from "dotenv";
 import userRouter from "./routes/userRouter.js";
 import messageRouter from "./routes/messageRouter.js";
-import chatRouter from "./routes/chatRouter.js"
+import chatRouter from "./routes/chatRouter.js";
+import cookieParser from "cookie-parser";
 
 
 
@@ -14,6 +15,7 @@ dotenv.config();  // it will put the env contents inside process.env(initially a
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 
 
