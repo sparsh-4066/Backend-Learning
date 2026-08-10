@@ -15,12 +15,16 @@ export const signupSchema = z.Object({
     .max(100,"Maximum age should be 100")
     .optional(),   //that this field is optional
      
+
+
     email:z.preprocess(
             (value)=> typeof value =="string" ? value.trim().toLowerCase() :"",
             z.email("Email must be valid")
           ),
 
 
+
+          
     password:
             z.string()
             .min(8)

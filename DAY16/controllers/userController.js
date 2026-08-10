@@ -33,23 +33,43 @@ export const signup = async (req,res)=>{
         //validate all these datas
 
         const result =signupSchema.safeparse(req.body);
+        //safeparse--> if any error comes, it will not throw errors,
+        //it will return an object and will store in result
+        //and check the status of result
+        
+
+        //if failes
+        if(!result.success){
+            return  res.status(400).json({
+                message: result.error.issues[0].message  //this is a format
+            }) 
+        }
+
          
 
+        // if passed
+        const {name,age,email,password} = result.data; // now replace  (RHS)of 
+        //this line i.e req.body---> result.data
 
-        const {name,age,email,password} = req.body;
 
-        if(!email || !password || !name){
+        
+
+        //now few lines below can be commented out....(no requriement since we have already validated)
+        /* if(!email || !password || !name){
 
             //return so that the next lines of code do not execute
             return res.status(400).json({
                 message:"Some fields are missing ,kindly fill them"
             })
         
-        }
+        } */
+       
+
+
 
         //now check whether the email already exists or not.
 
-        User.findOne(
+        const user = await User.findOne(
             {
                 email
             }
@@ -112,13 +132,28 @@ export const signup = async (req,res)=>{
 
 export const login = async (req,res)=>{
     try{
-        const {email,password} = req.body;
-        if(!email || !password){
+
+
+        const result = loginSchema.safeparse(req.body);
+
+         //if failed to satisfy schema
+         if(!result.success){
+            return  res.status(400).json({
+                message: result.error.issues[0].message  //this is a format
+            }) 
+        }
+        
+        
+            //if passed
+        const {email,password} = result.data; //replace req.body with result.data
+
+
+        /* if(!email || !password){
             return res.status(400).json({
                 message:"Email,password or some field ae missing"
             })
 
-        }
+        } */
 
         //verify the password
 
