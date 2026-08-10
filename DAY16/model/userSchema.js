@@ -1,15 +1,21 @@
 import mongoose from "mongoose";
 
+//validation  
+
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    minLength:3,
+    maxLength:30
   },
 
   age: {
-    type: Number
+    type: Number,
+    min:10,
+    max:100
   },
-
+//check for the validity of email (checkpointers)
   email: {
     type: String,
     required: true,

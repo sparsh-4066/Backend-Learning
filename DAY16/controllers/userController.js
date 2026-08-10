@@ -3,6 +3,7 @@
 import User from "../model/userSchema.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { signupSchema, loginSchema } from "../validators/userValidator.js";
 
 
 
@@ -28,6 +29,13 @@ const cookiesOption = {
 
 export const signup = async (req,res)=>{
     try{
+
+        //validate all these datas
+
+        const result =signupSchema.safeparse(req.body);
+         
+
+
         const {name,age,email,password} = req.body;
 
         if(!email || !password || !name){
