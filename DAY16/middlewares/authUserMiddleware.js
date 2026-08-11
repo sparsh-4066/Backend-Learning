@@ -18,14 +18,14 @@ const authUserMiddleware = async (req,res,next)=>{
         // so when in next(the profile) section is called, it should not search the database again and again
 
 
-
+ 
         if(!existingUser){
             return res.status(404).json({
                 message:"User does not exist"
             })
         }
 
-        req.user = existingUser;  // in profile , I should not have to make the call again to the database
+        req.user = existingUser;  // in profile,or in get chats , I should not have to make the call again to the database
 
         next();
 

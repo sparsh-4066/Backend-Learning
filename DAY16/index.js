@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import userRouter from "./routes/userRouter.js";
 import messageRouter from "./routes/messageRouter.js";
 import chatRouter from "./routes/chatRouter.js";
+import chatRouter from "./routes/chatRouter.js";
 import cookieParser from "cookie-parser";
 
 
