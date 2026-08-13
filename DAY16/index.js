@@ -9,7 +9,7 @@ import cookieParser from "cookie-parser";
 
 
 
-dotenv.config();  // it will put the env contents inside process.env(initially an empty object) 
+dotenv.config();  // it will put the env contents inside process.env(initially an empty object)....
 
 
 

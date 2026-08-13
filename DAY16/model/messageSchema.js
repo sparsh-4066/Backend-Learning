@@ -45,7 +45,7 @@ const messageSchema = new mongoose.Schema({
       default: 0
     }
   }
-}, { timestamps: true });
+}, { timestamps: true });   //by default,mongodb injects updatedat and created at
 
 messageSchema.index({ chatId: 1, createdAt: 1 });
 messageSchema.index({ userId: 1, createdAt: -1 });

@@ -8,6 +8,7 @@ messageRouter.use(authUserMiddleware) // protect all the below given routes
 //get message and send message corresponding to a chat
 
 
+messageRouter.post("/", sendMessage)  // this one is for the first message of any chat(thats why no chatId is sent in the url) 
 messageRouter.get("/:chat",getMessage)
 messageRouter.post("/:chat",sendMessage)
 

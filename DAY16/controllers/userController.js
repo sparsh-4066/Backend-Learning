@@ -4,6 +4,8 @@ import User from "../model/userSchema.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { signupSchema, loginSchema } from "../validators/userValidator.js";
+import Chat from "../model/chatSchema.js";
+import Message from "../model/messageSchema.js";
 
 
 
@@ -23,6 +25,7 @@ const cookiesOption = {
     secure:false,
     maxAge: 60*60*1000
 }
+
 
 
 
@@ -296,3 +299,55 @@ export const profile = async (req,res)=>{
 
     }
 }
+
+
+        //for the below processes -->
+        
+
+
+        //1-->find all the CHATID's which belongs to user
+
+        //2---> delete all the messages which belong to the chatID
+
+        //3-->  delete all the ChatID which belong to this user
+        
+        //4---> Delete the whole profile.
+
+
+
+    export const deleteAccount = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    const chats = await Chat.find({ userId }).select("_id");
+
+    const chatIds = chats.map((chat) => chat._id);
+
+    await Message.deleteMany({
+      chatId: { $in: chatIds }  //first delete all messages in the corresponding chatID
+    });
+
+    await Chat.deleteMany({
+      userId             //then delete the chat ID's itself
+    });
+
+    await User.deleteOne({
+      _id: userId      //then delete the whole profile of the user
+    });
+
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax"
+    });
+
+    res.status(200).json({
+      message: "Account deleted successfully"
+    });
+
+  } catch (err) {
+    res.status(500).json({
+      message: "Internal server error"
+    });
+  }
+};
